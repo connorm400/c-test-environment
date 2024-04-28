@@ -1,0 +1,1 @@
+basically you make test functions taking void and returning test_result and then you put it in the tests[] array and then it will test it if the testing flag is true
