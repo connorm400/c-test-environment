@@ -7,10 +7,10 @@ int run_tests(void) {
     uint8_t tests_failed = 0;
     for (size_t i = 0; i < sizeof(tests) / sizeof(test); i++) {
         if (!tests[i].fn()) {
-            printf("\033[91m===test \"%s\" failed===\033[m\n", tests[i].description);
+            printf("\033[91m===test \"%s\" failed===\033[m\n", tests[i].str);
             tests_failed++;
         } else {
-            printf("\033[92m===test \"%s\" passed===\033[m\n", tests[i].description);
+            printf("\033[92m===test \"%s\" passed===\033[m\n", tests[i].str);
         }
     }
     
@@ -36,4 +36,5 @@ test_result test_math(void) {
 
 test_result will_fail(void) {
     TASSERT(1 < 2);
+    return TEST_PASS;
 }

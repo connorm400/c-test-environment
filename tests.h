@@ -4,18 +4,20 @@
 typedef enum { TEST_FAIL, TEST_PASS } test_result;
 typedef test_result(*test_fn)(void);
 typedef struct {
-    const char* description;
     test_fn fn;
+    const char* str;
 } test;
 
 test_result test_math(void);
 test_result will_fail(void);
 
+#define TEST(fnname) \
+    { .fn = fnname, .str = #fnname }
 
 static const test tests[] = {
-    { .fn = test_math, .description = "math test" },
-    { .fn = will_fail, .description = "will fail" },
-    { .fn = test_math, .description = "math test" },
+    TEST(test_math),
+    TEST(will_fail),
+    TEST(test_math),
 };
 
 test_result _tassert_fail(const char* expr, const char* file, unsigned int line);
